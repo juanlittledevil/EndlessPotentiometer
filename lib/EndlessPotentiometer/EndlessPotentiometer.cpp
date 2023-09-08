@@ -5,6 +5,7 @@ EndlessPotentiometer::EndlessPotentiometer() {
   valueA = 0;
   valueB = 0;
   valueChanged = 0;
+  value = 0;
 }
 
 void EndlessPotentiometer::updateValues(int valueA, int valueB) {
@@ -76,20 +77,26 @@ void EndlessPotentiometer::updateValues(int valueA, int valueB) {
       valueChanged = direction*abs(valueB - previousValueB)/sensitivity;
     }
   }
+
+  // Update the 
+  value = getValue(value);
 }
 
-// Threshold is the amount of change that must happen in order to be considered
-// as a change in value. Ideally this should be set low but just large enough to
-// catch jitter from the pot. 3 was a good value in my tests.
-void EndlessPotentiometer::setThreshold(int threshold) {
-  this->threshold = threshold;
-}
 
-// Sensitivity refers to how quickly values change when the knob is turned.
-// Higher values will make it less sensitivy thus, needing to turn the knob more times
-// until to reach the max or min values.
-// If you are working with 127 values, a larger number may be desired. However,
-// if you are workign with larger values you will want to set this lower.
-void EndlessPotentiometer::setSensitivity(float sensitivity) {
-  this->sensitivity = sensitivity;
+int EndlessPotentiometer::getValue(int value) {
+  if (isMoving) {
+    if (direction == CLOCKWISE) {
+      value = value + valueChanged;
+    } else if (direction == COUNTER_CLOCKWISE) {
+      value = value - valueChanged;
+    }
+
+    if (value < minValue) {
+      value = minValue;
+    } else if (value > maxValue) {
+      value = maxValue;
+    }
+
+    return value;
+  }
 }
