@@ -1,15 +1,15 @@
 # EndlessPotentiometer.h
 
 
-This library is based from the work by Bjørn Brandal [here](https://hackaday.io/project/171841-driveralgorithm-for-360-deg-endless-potentiometer).
+This library is based on Bjørn Brandal's work [here](https://hackaday.io/project/171841-driveralgorithm-for-360-deg-endless-potentiometer).
 It is a library for detecting the direction and values from an endless rotary potentiometer like those found on the Novation Circuit and
 the Native Instruments KORE/KORE2 controllers.
 
-The library has purposely left out Arduino specific libraries like analogRead() so that it can be framework agnostic. This means
-that if you want to use a library like Mozzi, it'll still work since it is evaluating the values passed and not calling those values itself.
+The library has purposely left out the Arduino library so that it can be framework-agnostic. This means
+that if you want to use a library like Mozzi, it'll still work since it evaluates the values passed and not by calling those values itself using analogRead().
 
 
-> Here is an example on how to use this:
+> Here is an example of how to use this:
 
 ```
 #include <Arduino.h>
