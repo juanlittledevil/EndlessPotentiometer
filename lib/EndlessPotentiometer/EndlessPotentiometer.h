@@ -12,13 +12,14 @@ public:
   };
 
   int direction;
-  int threshold = 3; // jitter threshold. used to know when the knob is being moved.
+  int valueChanged;
   
   EndlessPotentiometer();
 
   void updateValues(int valueA, int valueB);
-  bool isMoving();
+  bool isMoving;
   void setThreshold(int threshold);
+  void setSensitivity(float Sensitivity);
 
 private:
   int valueA;
@@ -27,6 +28,8 @@ private:
   int previousValueB = 0;
   int dirA = 0;
   int dirB = 0;
+  int threshold = 3; // jitter threshold. used to know when the knob is being moved.
+  float sensitivity = 8;
   const int adcMaxValue = 1023;  // the max value from analogRead for each pin.
 };
 
