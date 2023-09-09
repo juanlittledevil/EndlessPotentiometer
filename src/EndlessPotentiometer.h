@@ -3,6 +3,8 @@
 #ifndef EndlessPotentiometer_h
 #define EndlessPotentiometer_h
 
+#include "Arduino.h"
+
 class EndlessPotentiometer {
 public:
   enum Direction {
