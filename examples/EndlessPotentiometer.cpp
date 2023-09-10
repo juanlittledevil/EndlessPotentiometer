@@ -8,8 +8,6 @@
 #define DEBUG true
 #define MAX_POT_VALUE 1023
 
-int value1=0;
-int value2=0;
 int value=0;
 int localValue=0;
 int altValue=0;
