@@ -8,9 +8,9 @@
 class EndlessPotentiometer {
 public:
   enum Direction {
-    NOT_MOVING,
     CLOCKWISE,
-    COUNTER_CLOCKWISE
+    COUNTER_CLOCKWISE,
+    NOT_MOVING
   };
 
   bool isMoving;
@@ -47,6 +47,11 @@ public:
   int getValue(int value);
 
 private:
+  enum IndividualDirection {
+    UP,
+    DOWN
+  };
+
   int valueA;
   int valueB;
   int previousValueA = 0;
