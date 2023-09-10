@@ -16,41 +16,41 @@ void EndlessPotentiometer::updateValues(int valueA, int valueB) {
 
   // decode each wiper value direction.
   if (valueA > (previousValueA + threshold)) {
-    dirA = 1;
+    dirA = CLOCKWISE;
   } else if (valueA < (previousValueA - threshold)) {
-    dirA = -1;
+    dirA = COUNTER_CLOCKWISE;
   } else {
-    dirA = 0;
+    dirA = NOT_MOVING;
   }
 
   if (valueB > (previousValueB + threshold)) {
-    dirB = 1;
+    dirB = CLOCKWISE;
   } else if (valueB < (previousValueB - threshold)) {
-    dirB = -1;
+    dirB = COUNTER_CLOCKWISE;
   } else {
-    dirB = 0;
+    dirB = NOT_MOVING;
   }
 
   // Now evaluate the actual direction of the pot.
-  if (dirA == -1 && dirB == -1) {
+  if (dirA == COUNTER_CLOCKWISE && dirB == COUNTER_CLOCKWISE) {
     if (valueA > valueB) {
       direction = CLOCKWISE;
     } else {
       direction = COUNTER_CLOCKWISE;
     }
-  } else if (dirA == 1 && dirB == 1) {
+  } else if (dirA == CLOCKWISE && dirB == CLOCKWISE) {
     if (valueA < valueB) {
       direction = CLOCKWISE;
     } else {
       direction = COUNTER_CLOCKWISE;
     }
-  } else if (dirA == 1 && dirB == -1) {
+  } else if (dirA == CLOCKWISE && dirB == COUNTER_CLOCKWISE) {
     if ((valueA > (adcMaxValue / 2)) || (valueB > (adcMaxValue / 2))) {
       direction = CLOCKWISE;
     } else {
       direction = COUNTER_CLOCKWISE;
     }
-  } else if (dirA == -1 && dirB == 1) {
+  } else if (dirA == COUNTER_CLOCKWISE && dirB == CLOCKWISE) {
     if ((valueA < (adcMaxValue/2)) || (valueB < (adcMaxValue/2))) {
       direction = CLOCKWISE;
     } else {
